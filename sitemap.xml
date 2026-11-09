@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">
+  <url>
+    <loc>https://damien-codes.github.io/EcoQuant-Site/</loc><priority>1.0</priority>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://damien-codes.github.io/EcoQuant-Site/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://damien-codes.github.io/EcoQuant-Site/en/"/>
+  </url>
+  <url>
+    <loc>https://damien-codes.github.io/EcoQuant-Site/en/</loc><priority>1.0</priority>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://damien-codes.github.io/EcoQuant-Site/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://damien-codes.github.io/EcoQuant-Site/en/"/>
+  </url>
+  <url>
+    <loc>https://damien-codes.github.io/EcoQuant-Site/contact.html</loc><priority>0.5</priority>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://damien-codes.github.io/EcoQuant-Site/contact.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://damien-codes.github.io/EcoQuant-Site/en/contact.html"/>
+  </url>
+  <url>
+    <loc>https://damien-codes.github.io/EcoQuant-Site/en/contact.html</loc><priority>0.5</priority>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://damien-codes.github.io/EcoQuant-Site/contact.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://damien-codes.github.io/EcoQuant-Site/en/contact.html"/>
+  </url>
+  <url>
+    <loc>https://damien-codes.github.io/EcoQuant-Site/conditions.html</loc><priority>0.3</priority>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://damien-codes.github.io/EcoQuant-Site/conditions.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://damien-codes.github.io/EcoQuant-Site/en/terms.html"/>
+  </url>
+  <url>
+    <loc>https://damien-codes.github.io/EcoQuant-Site/en/terms.html</loc><priority>0.3</priority>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://damien-codes.github.io/EcoQuant-Site/conditions.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://damien-codes.github.io/EcoQuant-Site/en/terms.html"/>
+  </url>
+  <url>
+    <loc>https://damien-codes.github.io/EcoQuant-Site/confidentialite.html</loc><priority>0.3</priority>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://damien-codes.github.io/EcoQuant-Site/confidentialite.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://damien-codes.github.io/EcoQuant-Site/en/privacy.html"/>
+  </url>
+  <url>
+    <loc>https://damien-codes.github.io/EcoQuant-Site/en/privacy.html</loc><priority>0.3</priority>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://damien-codes.github.io/EcoQuant-Site/confidentialite.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://damien-codes.github.io/EcoQuant-Site/en/privacy.html"/>
+  </url>
+  <url>
+    <loc>https://damien-codes.github.io/EcoQuant-Site/mentions-legales.html</loc><priority>0.3</priority>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://damien-codes.github.io/EcoQuant-Site/mentions-legales.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://damien-codes.github.io/EcoQuant-Site/en/legal-notice.html"/>
+  </url>
+  <url>
+    <loc>https://damien-codes.github.io/EcoQuant-Site/en/legal-notice.html</loc><priority>0.3</priority>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://damien-codes.github.io/EcoQuant-Site/mentions-legales.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://damien-codes.github.io/EcoQuant-Site/en/legal-notice.html"/>
+  </url>
+  <url>
+    <loc>https://damien-codes.github.io/EcoQuant-Site/nouveautes.html</loc><priority>0.6</priority>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://damien-codes.github.io/EcoQuant-Site/nouveautes.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://damien-codes.github.io/EcoQuant-Site/en/changelog.html"/>
+  </url>
+  <url>
+    <loc>https://damien-codes.github.io/EcoQuant-Site/en/changelog.html</loc><priority>0.6</priority>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://damien-codes.github.io/EcoQuant-Site/nouveautes.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://damien-codes.github.io/EcoQuant-Site/en/changelog.html"/>
+  </url>
+</urlset>

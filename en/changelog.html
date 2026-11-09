@@ -1,0 +1,166 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>What's new — EcoQuant</title>
+  <meta name="description"
+    content="Release history of the free EcoQuant extension: new features, improvements and fixes.">
+  <meta name="color-scheme" content="dark light">
+  <meta name="theme-color" content="#070b16" media="(prefers-color-scheme: dark)">
+  <meta name="theme-color" content="#eef2f8" media="(prefers-color-scheme: light)">
+  <link rel="canonical" href="https://damien-codes.github.io/EcoQuant-Site/en/changelog.html">
+  <meta property="og:type" content="website">
+  <meta property="og:locale" content="en_US">
+  <meta property="og:site_name" content="EcoQuant">
+  <meta property="og:title" content="What's new — EcoQuant">
+  <meta property="og:description"
+    content="Release history of the free EcoQuant extension: new features, improvements and fixes.">
+  <meta property="og:url" content="https://damien-codes.github.io/EcoQuant-Site/en/changelog.html">
+  <meta property="og:image" content="https://damien-codes.github.io/EcoQuant-Site/img/og-en.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="EcoQuant – an alert before every economic news release, the result as soon as it's published, and a position size calculator">
+  <meta property="og:locale:alternate" content="fr_FR">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:image" content="https://damien-codes.github.io/EcoQuant-Site/img/og-en.png">
+  <link rel="alternate" hreflang="fr" href="https://damien-codes.github.io/EcoQuant-Site/nouveautes.html">
+  <link rel="alternate" hreflang="en" href="https://damien-codes.github.io/EcoQuant-Site/en/changelog.html">
+  <link rel="alternate" hreflang="x-default" href="https://damien-codes.github.io/EcoQuant-Site/nouveautes.html">
+  <link rel="icon" type="image/png" sizes="32x32" href="../img/icon32.png">
+  <link rel="icon" type="image/png" sizes="128x128" href="../img/icon128.png">
+  <link rel="apple-touch-icon" href="../img/icon128.png">
+  <script>document.documentElement.classList.add('js')</script>
+
+  <script defer src="../js/main.js"></script>
+  <link rel="stylesheet" href="../css/style.css">
+</head>
+
+<body>
+  <div class="backdrop" aria-hidden="true">
+    <span class="blob blob-red"></span><span class="blob blob-blue"></span>
+    <span class="blob blob-amber"></span><span class="blob blob-green"></span>
+  </div>
+  <svg class="svg-defs" width="0" height="0" aria-hidden="true" focusable="false">
+    <filter id="liquid-refraction" x="0" y="0" width="100%" height="100%" color-interpolation-filters="sRGB">
+      <feTurbulence type="fractalNoise" baseFrequency="0.008 0.012" numOctaves="2" seed="7" result="noise" />
+      <feGaussianBlur in="noise" stdDeviation="2" result="soft" />
+      <feDisplacementMap in="SourceGraphic" in2="soft" scale="28" xChannelSelector="R" yChannelSelector="G" />
+    </filter>
+  </svg>
+  <a class="skip-link" href="#contenu">Skip to content</a>
+  <header class="site-header" data-header>
+    <nav class="nav glass" aria-label="Main navigation">
+      <a class="brand" href="index.html"><img src="../img/icon128.png" alt="" width="32" height="32">EcoQuant</a>
+      <ul class="nav-links" id="nav-links">
+        <li><a href="index.html#fonctionnalites">Features</a></li>
+        <li><a href="index.html#comment">How it works</a></li>
+        <li><a href="index.html#installer">Install</a></li>
+        <li><a href="index.html#faq">FAQ</a></li>
+        <li><a href="contact.html">Contact</a></li>
+      </ul>
+      <div class="nav-actions">
+        <a class="lang-switch" href="../nouveautes.html" hreflang="fr" lang="fr" title="Version française"><span class="visually-hidden">Passer en </span>FR</a>
+        <a class="btn btn-primary btn-sm" href="https://chromewebstore.google.com/detail/kmpbiiclcjeaockakakgmejokbcocnij" target="_blank" rel="noopener">Add<span class="hide-xs">to Chrome</span></a>
+        <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="nav-links"
+          aria-label="Open menu">
+          <span aria-hidden="true"></span><span aria-hidden="true"></span>
+        </button>
+      </div>
+    </nav>
+  </header>
+
+  <main id="contenu">
+
+    <section class="page-hero">
+      <div class="container">
+        <span class="eyebrow">What's new</span>
+        <h1>What's new</h1>
+        <p>EcoQuant's release history. Your installed version is shown in <code>chrome://extensions</code>.</p>
+      </div>
+    </section>
+
+    <div class="container">
+      <div class="prose glass reveal">
+        <p class="meta">Last updated: November 7, 2026</p>
+
+        <!-- New version: copy the <article> block below ABOVE this one, change the number, date and list,
+             move the "Current version" tag and update the date above. -->
+        <article class="release" id="v1-3-0">
+          <h2>Version 1.3.0 <span class="release-tag">Current version</span></h2>
+          <p class="meta"><time datetime="2026-11-06">November 6, 2026</time> · first release on the Chrome Web Store</p>
+          <ul>
+            <li><strong>Economic calendar</strong> over 8 days (Investing.com, with automatic fallback to Forex Factory
+              when needed), shown in your own time zone.</li>
+            <li><strong>Alerts before every release</strong>: 60, 30, 15, 10 or 5 minutes before, or right on time.
+              Several lead times can be combined.</li>
+            <li><strong>Filters</strong> by impact level (high, medium, low, bank holidays) and by currency (USD, EUR,
+              GBP, JPY, CHF, CAD, AUD, NZD, CNY).</li>
+            <li><strong>Three ways to be alerted</strong>: system notification, pop-up window with countdown, sound.
+              Each one can be turned on separately.</li>
+            <li><strong>Actual figure on release</strong>: the actual number vs the forecast, ▲ better or ▼ worse than
+              expected for the currency.</li>
+            <li><strong>Position size calculator</strong>: capital, risk in % or amount, stop loss and take profit →
+              lots, amount at risk, pip value and R:R ratio (forex, gold, silver, indices, Bitcoin).</li>
+            <li><strong>Comfort</strong>: quiet hours, a bell to mute a single release, countdown on the extension
+              icon.</li>
+            <li><strong>100% free</strong>, no account and no data collected.</li>
+          </ul>
+          <p class="meta">The extension interface is currently in French.</p>
+        </article>
+
+        <h2 id="suivre">Follow upcoming releases</h2>
+        <p>Every update is listed here. The code and the detailed change history are on
+          <a href="https://github.com/Damien-Codes/EcoQuant" target="_blank" rel="noopener">GitHub</a>. An idea or a bug? Reach me from the
+          <a href="contact.html">Contact</a> page or open an issue on <a href="https://github.com/Damien-Codes/EcoQuant/issues" target="_blank"
+            rel="noopener">GitHub</a>.</p>
+      </div>
+    </div>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-card glass">
+        <div class="footer-grid">
+          <div class="footer-about">
+            <a class="brand" href="index.html"><img src="../img/icon128.png" alt="" width="32" height="32"
+                loading="lazy">EcoQuant</a>
+            <p>The economic calendar and alerts before every news release, right in your browser. 100%&nbsp;free,
+              no account needed.</p>
+          </div>
+          <nav aria-label="Product">
+            <h2>Useful links</h2>
+            <ul>
+              <li><a href="index.html#fonctionnalites">Features</a></li>
+              <li><a href="index.html#installer">Install</a></li>
+              <li><a href="index.html#faq">FAQ</a></li>
+              <li><a href="changelog.html">What's new</a></li>
+              <li><a href="https://github.com/Damien-Codes/EcoQuant" target="_blank" rel="noopener">GitHub</a></li>
+            </ul>
+          </nav>
+          <nav aria-label="Legal information">
+            <h2>Info</h2>
+            <ul>
+              <li><a href="terms.html">Terms of use</a></li>
+              <li><a href="privacy.html">Privacy</a></li>
+              <li><a href="legal-notice.html">Legal notice</a></li>
+              <li><a href="contact.html">Contact</a></li>
+            </ul>
+          </nav>
+        </div>
+        <div class="footer-bottom">
+          <p class="footer-legal-links">
+            <span>© 2026 <a href="https://github.com/damien-codes">Damien-Codes</a></span>
+          </p>
+          <p class="disclaimer">Code under the MIT license. Not affiliated with Investing.com or Forex Factory.
+            Informational tool only: does not constitute investment advice. Trading currencies, indices, commodities
+            and cryptocurrencies carries a high risk of capital loss. Chrome is a trademark of Google LLC; this
+            extension is neither affiliated with nor endorsed by Google.</p>
+        </div>
+      </div>
+    </div>
+  </footer>
+</body>
+
+</html>

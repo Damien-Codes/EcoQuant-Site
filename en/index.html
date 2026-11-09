@@ -1,0 +1,831 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>EcoQuant: economic calendar & news alerts for Chrome</title>
+  <meta name="description"
+    content="Free Chrome extension: economic calendar with pop-up alerts before every news release (NFP, CPI, ECB, FOMC), actual vs forecast and a lot size calculator.">
+  <meta name="color-scheme" content="dark light">
+  <meta name="theme-color" content="#070b16" media="(prefers-color-scheme: dark)">
+  <meta name="theme-color" content="#eef2f8" media="(prefers-color-scheme: light)">
+  <link rel="canonical" href="https://damien-codes.github.io/EcoQuant-Site/en/">
+  <meta property="og:type" content="website">
+  <meta property="og:locale" content="en_US">
+  <meta property="og:site_name" content="EcoQuant">
+  <meta property="og:title" content="EcoQuant: economic calendar & news alerts for Chrome">
+  <meta property="og:description"
+    content="Free Chrome extension: economic calendar with pop-up alerts before every news release (NFP, CPI, ECB, FOMC), actual vs forecast and a lot size calculator.">
+  <meta property="og:url" content="https://damien-codes.github.io/EcoQuant-Site/en/">
+  <meta property="og:image" content="https://damien-codes.github.io/EcoQuant-Site/img/og-en.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="EcoQuant – alert before every economic news release, actual result as soon as it's out, and a position size calculator">
+  <meta property="og:locale:alternate" content="fr_FR">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:image" content="https://damien-codes.github.io/EcoQuant-Site/img/og-en.png">
+  <link rel="alternate" hreflang="fr" href="https://damien-codes.github.io/EcoQuant-Site/">
+  <link rel="alternate" hreflang="en" href="https://damien-codes.github.io/EcoQuant-Site/en/">
+  <link rel="alternate" hreflang="x-default" href="https://damien-codes.github.io/EcoQuant-Site/">
+  <link rel="icon" type="image/png" sizes="32x32" href="../img/icon32.png">
+  <link rel="icon" type="image/png" sizes="128x128" href="../img/icon128.png">
+  <link rel="apple-touch-icon" href="../img/icon128.png">
+  <script>document.documentElement.classList.add('js')</script>
+  <script defer src="../js/main.js"></script>
+  <link rel="stylesheet" href="../css/style.css">
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  "name": "EcoQuant – Economic News",
+  "description": "Free extension for Chrome, Edge and Brave: economic calendar, pop-up alert before every release filtered by impact and currency, actual figure vs forecast on release and a position size calculator.",
+  "url": "https://damien-codes.github.io/EcoQuant-Site/en/",
+  "applicationCategory": "FinanceApplication",
+  "applicationSubCategory": "Browser extension",
+  "operatingSystem": "Chrome, Edge, Brave",
+  "softwareVersion": "1.3.0",
+  "dateModified": "2026-11-06",
+  "inLanguage": "en",
+  "isAccessibleForFree": true,
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "EUR"
+  },
+  "downloadUrl": "https://chromewebstore.google.com/detail/kmpbiiclcjeaockakakgmejokbcocnij",
+  "installUrl": "https://chromewebstore.google.com/detail/kmpbiiclcjeaockakakgmejokbcocnij",
+  "image": "https://damien-codes.github.io/EcoQuant-Site/img/og-en.png",
+  "featureList": [
+    "8-day economic calendar",
+    "Alerts before every release (60, 30, 15, 10, 5 min or on time)",
+    "Filters by impact level and currency",
+    "Actual vs forecast right after the release",
+    "Position size calculator",
+    "Quiet hours and per-news mute"
+  ],
+  "author": {
+    "@type": "Person",
+    "name": "Damien Pino",
+    "url": "https://github.com/Damien-Codes"
+  },
+  "sameAs": [
+    "https://github.com/Damien-Codes/EcoQuant",
+    "https://chromewebstore.google.com/detail/kmpbiiclcjeaockakakgmejokbcocnij"
+  ]
+}
+  </script>
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "inLanguage": "en",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Is it really free? Do I need to create an account?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes, 100% free and no account needed: every feature (alerts, 9 currencies, all impact levels, multiple lead times, result after release, position size calculator) is included. No ads, no subscription, no tracking. The source code is open, under the MIT license."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Do I need to keep the browser open?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes. Alerts are triggered by the extension, so Chrome (or Edge / Brave) has to be open, even if it's minimized to the taskbar. If the browser is closed or the computer is asleep, no alert can be shown."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "I'm not getting notifications on Windows. What should I do?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Open Settings → System → Notifications, make sure notifications are turned on for Google Chrome (or Edge / Brave) and that Do not disturb / Focus assist is turned off. On macOS: System Settings → Notifications → Google Chrome → Allow notifications. Either way, the Fire a test alert button in Settings lets you check that everything works. The pop-up window, for its part, shows up even if system notifications are blocked."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Where does the data come from? In what time zone are releases shown?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "By default, the calendar comes from Investing.com (rolling 8 days, with the actual figure after release). You can also pick Forex Factory in Settings: a very reliable feed, but limited to the current week and without actual figures. Investing.com sometimes rejects requests (anti-bot protection). The extension then switches automatically to Forex Factory (orange message in the popup) and retries Investing.com a little later. To get it unblocked faster: open investing.com once in your browser, then click ⟳ in the popup. Times are converted to your computer's time zone: no math needed, even when you travel."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Why don't I see the result after a release?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "The result (actual figure vs forecast) is only available with the Investing.com source. It arrives about one minute after the release; if the figure is late, the extension retries every minute for a few minutes. Also make sure the \"Result after release\" option is turned on in Settings."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How does the position size calculator work?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Open the popup and go to the Position size calculator tab. Exchange rates (ECB) are fetched automatically and can be entered manually under \"Advanced\". For indices and metals, the value of a point depends on your broker: check it and adjust it under \"Advanced\". The result is indicative."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What happens to my data?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "It stays in your browser. The extension has no server and sends nothing to its publisher. Details in the privacy policy."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "I found a bug or have an idea. How can I let you know?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Open an issue on GitHub (Issues) describing what's happening (browser, selected source, screenshot if possible), or email pinodamien@gmail.com. See also the Contact page."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Is this investment advice?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "No. EcoQuant is an information and organization tool. It does not recommend buying or selling anything. Trading involves a high risk of losing capital. See the terms of use."
+      }
+    }
+  ]
+}
+  </script>
+</head>
+
+<body>
+  <div class="backdrop" aria-hidden="true">
+    <span class="blob blob-red"></span><span class="blob blob-blue"></span>
+    <span class="blob blob-amber"></span><span class="blob blob-green"></span>
+  </div>
+  <svg class="svg-defs" width="0" height="0" aria-hidden="true" focusable="false">
+    <filter id="liquid-refraction" x="0" y="0" width="100%" height="100%" color-interpolation-filters="sRGB">
+      <feTurbulence type="fractalNoise" baseFrequency="0.008 0.012" numOctaves="2" seed="7" result="noise" />
+      <feGaussianBlur in="noise" stdDeviation="2" result="soft" />
+      <feDisplacementMap in="SourceGraphic" in2="soft" scale="28" xChannelSelector="R" yChannelSelector="G" />
+    </filter>
+  </svg>
+  <a class="skip-link" href="#contenu">Skip to content</a>
+  <header class="site-header" data-header>
+    <nav class="nav glass" aria-label="Main navigation">
+      <a class="brand" href="index.html" aria-current="page"><img src="../img/icon128.png" alt="" width="32"
+          height="32">EcoQuant</a>
+      <ul class="nav-links" id="nav-links">
+        <li><a href="#fonctionnalites">Features</a></li>
+        <li><a href="#comment">How it works</a></li>
+        <li><a href="#installer">Install</a></li>
+        <li><a href="#faq">FAQ</a></li>
+        <li><a href="contact.html">Contact</a></li>
+      </ul>
+      <div class="nav-actions">
+        <a class="lang-switch" href="../index.html" hreflang="fr" lang="fr" title="Version française"><span class="visually-hidden">Passer en </span>FR</a>
+        <a class="btn btn-primary btn-sm" href="https://chromewebstore.google.com/detail/kmpbiiclcjeaockakakgmejokbcocnij" target="_blank" rel="noopener">Add<span class="hide-xs">to Chrome</span></a>
+        <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="nav-links"
+          aria-label="Open menu">
+          <span aria-hidden="true"></span><span aria-hidden="true"></span>
+        </button>
+      </div>
+    </nav>
+  </header>
+
+  <main id="contenu">
+
+    <!-- ============ HERO ============ -->
+    <section class="hero">
+      <div class="container hero-grid">
+        <div class="hero-copy">
+          <span class="badge-pill glass"><span class="dot" aria-hidden="true"></span>Chrome · Edge · Brave extension ·
+            100% free</span>
+          <h1>Never miss <span class="hl">an economic news release</span> again.</h1>
+          <p class="lead">EcoQuant brings the economic calendar into your browser and warns you
+            <strong>a few minutes before every release</strong> (NFP, CPI, ECB rate decision, FOMC…) with a pop-up window,
+            a countdown and a sound. Filtered by impact and currency, with the actual figure as soon as it's out and a
+            position size calculator.
+          </p>
+          <div class="cta-row">
+            <a class="btn btn-primary btn-lg" href="https://chromewebstore.google.com/detail/kmpbiiclcjeaockakakgmejokbcocnij" target="_blank" rel="noopener">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                stroke-linejoin="round" aria-hidden="true">
+                <path d="M12 5v14M5 12h14" />
+              </svg>
+              Add to Chrome
+            </a>
+            <a class="btn btn-lg" href="https://github.com/Damien-Codes/EcoQuant" target="_blank" rel="noopener">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                stroke-linejoin="round" aria-hidden="true">
+                <path
+                  d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22" />
+              </svg>
+              Source code
+            </a>
+          </div>
+          <ul class="trust">
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"
+                stroke-linejoin="round" aria-hidden="true">
+                <path d="M20 6 9 17l-5-5" />
+              </svg>100% free, no account</li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"
+                stroke-linejoin="round" aria-hidden="true">
+                <path d="M20 6 9 17l-5-5" />
+              </svg>No tracking, no ads</li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"
+                stroke-linejoin="round" aria-hidden="true">
+                <path d="M20 6 9 17l-5-5" />
+              </svg>Times in your own time zone</li>
+          </ul>
+        </div>
+
+        <!-- HTML/CSS mockup of the alert window (illustration, not a screenshot) -->
+        <div class="hero-visual glass" data-refract role="img"
+          aria-label="Illustration: the extension's alert window showing a countdown before the US Non-Farm Payrolls release, and a result notification that came in better than expected.">
+          <div class="mock-stage" aria-hidden="true">
+            <div class="mock-window">
+              <div class="mock-titlebar"><img src="../img/icon32.png" alt="" width="16" height="16">News in a few
+                minutes<span class="pin">always on top</span></div>
+              <div class="mock-stripe"></div>
+              <div class="mock-head">
+                <div class="mock-kicker"><span class="dot"></span>Upcoming news · High impact</div>
+                <div class="mock-big num" id="mock-cd">09:58</div>
+                <div class="mock-sub">Release at <b>14:30</b> · alert 10 min before</div>
+              </div>
+              <ul class="mock-list">
+                <li>
+                  <span class="bars"><i class="on"></i><i class="on"></i><i class="on"></i></span>
+                  <span class="ccy">USD</span>
+                  <span class="t"><span class="t-name">Non-Farm Payrolls (NFP)</span><small>Fcst. 180K · Prev.
+                      175K</small></span>
+                </li>
+                <li>
+                  <span class="bars"><i class="on"></i><i class="on"></i><i class="on"></i></span>
+                  <span class="ccy">USD</span>
+                  <span class="t"><span class="t-name">Unemployment Rate</span><small>Fcst. 4.1% · Prev.
+                      4.1%</small></span>
+                </li>
+                <li>
+                  <span class="bars bars-medium"><i class="on"></i><i class="on"></i><i></i></span>
+                  <span class="ccy">USD</span>
+                  <span class="t"><span class="t-name">Average Hourly Earnings (m/m)</span><small>Fcst. 0.3% · Prev.
+                      0.4%</small></span>
+                </li>
+              </ul>
+              <div class="mock-foot">
+                <span class="mock-btn hide-xs">Remind me at release time</span>
+                <span class="sp"></span>
+                <span class="mock-btn primary">OK</span>
+              </div>
+            </div>
+            <div class="mock-toast">
+              <img src="../img/icon32.png" alt="" width="32" height="32">
+              <div>
+                <b>Result · NFP (USD)</b>
+                <span class="up">▲ 212K</span> vs 180K forecast<br>
+                <small>Better than expected for the USD</small>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ FEATURES ============ -->
+    <section class="section" id="fonctionnalites">
+      <div class="container">
+        <div class="section-head reveal">
+          <span class="eyebrow">Features</span>
+          <h2>Everything you need to be ready before the release</h2>
+          <p>Built for forex, index and commodity traders who are tired of getting caught off guard by release-day
+            volatility. Everything is included, for free.</p>
+        </div>
+        <div class="grid grid-3">
+          <article class="card glass glass-interactive reveal">
+            <div class="icon-tile icon-blue"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <rect x="3" y="4" width="18" height="18" rx="2" />
+                <path d="M16 2v4M8 2v4M3 10h18" />
+              </svg></div>
+            <h3>Economic calendar</h3>
+            <p>Releases over a rolling 8-day window (Investing.com, with Forex Factory as an automatic fallback or by
+              choice): time in your time zone, currency, impact, forecast and previous value.</p>
+          </article>
+          <article class="card glass glass-interactive reveal">
+            <div class="icon-tile icon-red"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <path d="M6 8a6 6 0 0 1 12 0c0 7 3 9 3 9H3s3-2 3-9" />
+                <path d="M10.3 21a1.94 1.94 0 0 0 3.4 0" />
+              </svg></div>
+            <h3>Alert before every release</h3>
+            <p>System notification, an always-on-top pop-up window with a live countdown, and a sound.
+              Impossible to miss, even when you're deep in a chart.</p>
+          </article>
+          <article class="card glass glass-interactive reveal">
+            <div class="icon-tile icon-amber"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <path d="M22 3H2l8 9.46V19l4 2v-8.54L22 3z" />
+              </svg></div>
+            <h3>Impact &amp; currency filters</h3>
+            <p>Follow only what matters: High, Medium or Low impact, or bank holidays, and any of the 9 currencies (USD,
+              EUR, GBP, JPY, CHF, CAD, AUD, NZD, CNY).</p>
+          </article>
+          <article class="card glass glass-interactive reveal">
+            <div class="icon-tile icon-blue"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <circle cx="12" cy="13" r="8" />
+                <path d="M12 9v4l2 2M5 3 2 6M22 6l-3-3" />
+              </svg></div>
+            <h3>Multiple lead times</h3>
+            <p>Get alerted 60, 30, 15, 10 or 5 minutes before, or right on time — even several times for the same
+              release. The icon badge shows the countdown.</p>
+          </article>
+          <article class="card glass glass-interactive reveal">
+            <div class="icon-tile icon-green"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9z" />
+              </svg></div>
+            <h3>Quiet hours</h3>
+            <p>No alerts at night or during your downtime. Asian-session releases won't wake you up anymore.
+            </p>
+          </article>
+          <article class="card glass glass-interactive reveal">
+            <div class="icon-tile icon-blue"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <path
+                  d="M13.73 21a2 2 0 0 1-3.46 0M18.63 13A17.89 17.89 0 0 1 18 8M6.26 6.26A5.82 5.82 0 0 0 6 8c0 7-3 9-3 9h14M18 8a6 6 0 0 0-9.33-5M2 2l20 20" />
+              </svg></div>
+            <h3>Mute per release</h3>
+            <p>A bell next to every release: silence the alert for one specific event without touching your settings.</p>
+          </article>
+        </div>
+
+        <div class="split">
+          <article class="card glass reveal">
+            <h3>Result as soon as it's out</h3>
+            <p>One minute after each release you follow, a notification shows the actual figure against the forecast: ▲
+              better or ▼ worse than expected <em>for the currency</em>. You can see at a glance which way the
+              market is likely to react.</p>
+            <div class="result-demo inset" role="group" aria-label="Sample results">
+              <div class="result-row"><span class="ccy">USD</span><span class="name">Non-Farm Payrolls</span><span
+                  class="up num">▲ 212K</span><span class="muted num">fcst. 180K</span></div>
+              <div class="result-row"><span class="ccy">EUR</span><span class="name">Manufacturing PMI</span><span
+                  class="down num">▼ 45.2</span><span class="muted num">fcst. 46.0</span></div>
+            </div>
+            <p class="card-note">Available with the Investing.com source.</p>
+          </article>
+
+          <article class="card glass reveal" id="calculateur">
+            <div class="card-title-row">
+              <h3>Position size calculator</h3>
+              <span class="demo-tag">Demo</span>
+            </div>
+            <p>Account balance and currency, risk in % or as an amount, stop loss and take profit in pips or points: get
+              the size in lots, the amount actually at risk, the pip value and the risk/reward ratio. Forex, gold,
+              silver, indices and Bitcoin.</p>
+            <form class="calc-demo inset" data-calc aria-label="Position size calculator demo on EUR/USD" novalidate>
+              <div class="calc-fields">
+                <label>
+                  <span>Balance (EUR)</span>
+                  <input name="capital" type="number" inputmode="decimal" min="1" step="any" value="10000">
+                </label>
+                <label>
+                  <span>Risk (%)</span>
+                  <input name="risk" type="number" inputmode="decimal" min="0.01" max="100" step="any" value="1">
+                </label>
+                <label>
+                  <span>Stop (pips)</span>
+                  <input name="stop" type="number" inputmode="decimal" min="0.1" step="any" value="25">
+                </label>
+              </div>
+              <dl class="calc-out num" aria-live="polite">
+                <div>
+                  <dt>Instrument</dt>
+                  <dd>EUR/USD</dd>
+                </div>
+                <div>
+                  <dt>Risk budget</dt>
+                  <dd><output name="budget">100.00 EUR</output></dd>
+                </div>
+                <div class="calc-main">
+                  <dt>Position size</dt>
+                  <dd><output name="lots">0.43 lot</output></dd>
+                </div>
+                <div>
+                  <dt>Amount at risk</dt>
+                  <dd><output name="risked">≈ 99.54 EUR</output></dd>
+                </div>
+                <div>
+                  <dt>Pip value</dt>
+                  <dd><output name="pip">≈ 3.98 EUR</output></dd>
+                </div>
+              </dl>
+              <p class="calc-hint">Indicative demo: fixed EUR/USD rate of 1.0800, lots rounded down to the nearest
+                0.01. In the extension, the ECB rate is updated automatically.</p>
+            </form>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ FREE ============ -->
+    <section class="section" id="gratuit">
+      <div class="container">
+        <div class="section-head reveal">
+          <span class="eyebrow">100% free</span>
+          <h2>Everything included. For everyone.</h2>
+          <p>No limited version, no hidden subscription: every feature is available as soon as you install it.
+          </p>
+        </div>
+        <div class="grid grid-3">
+          <article class="card glass reveal">
+            <ul class="checklist">
+              <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"
+                  stroke-linejoin="round" aria-hidden="true">
+                  <path d="M20 6 9 17l-5-5" />
+                </svg>No account to create</li>
+              <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"
+                  stroke-linejoin="round" aria-hidden="true">
+                  <path d="M20 6 9 17l-5-5" />
+                </svg>No credit card, no purchases</li>
+              <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"
+                  stroke-linejoin="round" aria-hidden="true">
+                  <path d="M20 6 9 17l-5-5" />
+                </svg>No ads</li>
+            </ul>
+          </article>
+          <article class="card glass reveal">
+            <ul class="checklist">
+              <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"
+                  stroke-linejoin="round" aria-hidden="true">
+                  <path d="M20 6 9 17l-5-5" />
+                </svg>No tracking, no analytics</li>
+              <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"
+                  stroke-linejoin="round" aria-hidden="true">
+                  <path d="M20 6 9 17l-5-5" />
+                </svg>No server: everything happens in your browser</li>
+              <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"
+                  stroke-linejoin="round" aria-hidden="true">
+                  <path d="M20 6 9 17l-5-5" />
+                </svg>Settings stored on your device only</li>
+            </ul>
+          </article>
+          <article class="card glass reveal">
+            <ul class="checklist">
+              <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"
+                  stroke-linejoin="round" aria-hidden="true">
+                  <path d="M20 6 9 17l-5-5" />
+                </svg>Open source, MIT license</li>
+              <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"
+                  stroke-linejoin="round" aria-hidden="true">
+                  <path d="M20 6 9 17l-5-5" />
+                </svg>Works with Chrome, Edge and Brave</li>
+              <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"
+                  stroke-linejoin="round" aria-hidden="true">
+                  <path d="M20 6 9 17l-5-5" />
+                </svg>Interface and alerts in French</li>
+            </ul>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ HOW IT WORKS ============ -->
+    <section class="section" id="comment">
+      <div class="container">
+        <div class="section-head reveal">
+          <span class="eyebrow">How it works</span>
+          <h2>Ready in under two minutes</h2>
+        </div>
+        <ol class="how grid grid-3">
+          <li class="card glass reveal">
+            <span class="how-num" aria-hidden="true">1</span>
+            <h3>Install the extension</h3>
+            <p>Add EcoQuant to Chrome, Edge or Brave (<a href="#installer">see installation</a>), then pin
+              the icon to the toolbar.</p>
+          </li>
+          <li class="card glass reveal">
+            <span class="how-num" aria-hidden="true">2</span>
+            <h3>Choose your filters</h3>
+            <p>In Settings: calendar source, impact levels, currencies, alert lead times, alert type and
+              quiet hours. A button lets you fire a test alert.</p>
+          </li>
+          <li class="card glass reveal">
+            <span class="how-num" aria-hidden="true">3</span>
+            <h3>Trade with peace of mind</h3>
+            <p>Keep the browser open (even minimized): the alert window pops up with its countdown before
+              every release you follow, then shows the result once it's out.</p>
+          </li>
+        </ol>
+      </div>
+    </section>
+
+    <!-- ============ INSTALL ============ -->
+    <section class="section" id="installer" aria-labelledby="installer-title">
+      <div class="container">
+        <div class="section-head reveal">
+          <span class="eyebrow">Install</span>
+          <h2 id="installer-title">Download the extension</h2>
+          <p>Install EcoQuant and never miss an economic release again</p>
+        </div>
+
+        <div class="install-grid">
+          <article class="install-card glass reveal">
+            <div class="install-icon install-icon-red"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false">
+                <path d="M3 9h18l-1.4 10.2A2 2 0 0 1 17.6 21H6.4a2 2 0 0 1-2-1.8L3 9z" />
+                <path d="M8 9V7a4 4 0 0 1 8 0v2" />
+                <path d="M9.5 15.5 11 17l3.5-3.5" />
+              </svg></div>
+            <h3>Chrome Web Store</h3>
+            <p>Simple, secure installation from the official Chrome Web Store</p>
+            <div class="install-action">
+              <a class="btn btn-primary btn-lg btn-block"
+                href="https://chromewebstore.google.com/detail/kmpbiiclcjeaockakakgmejokbcocnij"
+                target="_blank" rel="noopener">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                  stroke-linejoin="round" aria-hidden="true">
+                  <path d="M12 5v14M5 12h14" />
+                </svg>
+                Install from the Store
+              </a>
+            </div>
+          </article>
+          <article class="install-card glass reveal">
+            <div class="install-icon install-icon-blue"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <path d="M21 8 12 3 3 8v8l9 5 9-5V8z" />
+                <path d="M3 8l9 5 9-5M12 13v8" />
+                <path d="m7.5 5.5 9 5" />
+              </svg></div>
+            <h3>Manual installation</h3>
+            <p>Download the ZIP file and install the extension manually</p>
+            <div class="install-action">
+              <a class="btn btn-lg btn-block" href="../EcoQuant.zip" download="EcoQuant.zip">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                  stroke-linejoin="round" aria-hidden="true">
+                  <path d="M12 3v12m0 0-4.5-4.5M12 15l4.5-4.5" />
+                  <path d="M4 17v2a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-2" />
+                </svg>
+                Download ZIP
+              </a>
+              <p class="install-note"><a href="https://github.com/Damien-Codes/EcoQuant" target="_blank"
+                  rel="noopener">View the code on GitHub</a></p>
+            </div>
+          </article>
+        </div>
+
+        <article class="steps-card glass reveal" id="instructions" aria-labelledby="instructions-title">
+          <h3 id="instructions-title">Manual installation instructions</h3>
+          <ol class="steps">
+            <li>
+              <span class="step-num" aria-hidden="true">1</span>
+              <div>
+                <p>Download the ZIP file</p><small>"Download ZIP" button above (archive
+                  <code>EcoQuant.zip</code>).</small>
+              </div>
+            </li>
+            <li>
+              <span class="step-num" aria-hidden="true">2</span>
+              <div>
+                <p>Extract the ZIP contents to a folder</p><small>Right-click → <em>Extract All</em>. Keep the
+                  folder somewhere permanent: don't delete it after installing.</small>
+              </div>
+            </li>
+            <li>
+              <span class="step-num" aria-hidden="true">3</span>
+              <div>
+                <p>Open Chrome and go to
+                  <span class="code-copy"><code>chrome://extensions/</code><button class="copy-btn" type="button"
+                      data-copy="chrome://extensions/" aria-describedby="copy-status" hidden><svg viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round" aria-hidden="true">
+                        <rect x="9" y="9" width="12" height="12" rx="2" />
+                        <path d="M5 15H4a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1h10a1 1 0 0 1 1 1v1" />
+                      </svg><span data-copy-label>Copy</span></button></span>
+                </p>
+                <small>Edge: <code>edge://extensions</code> · Brave: <code>brave://extensions</code>. For security
+                  reasons, these addresses can't be opened from a link: paste it into the address bar.</small>
+                <span class="visually-hidden" id="copy-status" aria-live="polite"></span>
+              </div>
+            </li>
+            <li>
+              <span class="step-num" aria-hidden="true">4</span>
+              <div>
+                <p>Turn on "Developer mode" in the top right corner</p><small>On the left in Edge.</small>
+              </div>
+            </li>
+            <li>
+              <span class="step-num" aria-hidden="true">5</span>
+              <div>
+                <p>Click "Load unpacked" and select the
+                  <strong><code>extension</code></strong> folder (inside the extracted <code>EcoQuant</code> folder)
+                </p><small>It's the one that
+                  contains <code>manifest.json</code>. The settings page opens automatically.</small>
+              </div>
+            </li>
+            <li>
+              <span class="step-num" aria-hidden="true">6</span>
+              <div>
+                <p>Pin the 🧩 icon to see the countdown</p><small>Puzzle icon → pin: the badge shows
+                  the countdown to the next release.</small>
+              </div>
+            </li>
+          </ol>
+          <div class="notice info">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+              stroke-linejoin="round" aria-hidden="true">
+              <circle cx="12" cy="12" r="10" />
+              <path d="M12 16v-4M12 8h.01" />
+            </svg>
+            <p>When installed this way, the extension doesn't update itself: for a new version, replace the
+              folder's contents, then click ⟳ on the extensions page. Chrome may also show a warning about
+              developer-mode extensions at startup: that's normal.</p>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <!-- ============ FAQ ============ -->
+    <section class="section" id="faq">
+      <div class="container">
+        <div class="section-head reveal">
+          <span class="eyebrow">FAQ</span>
+          <h2>Frequently asked questions</h2>
+        </div>
+        <div class="faq reveal">
+          <details class="glass">
+            <summary>Is it really free? Do I need to create an account?</summary>
+            <div class="answer">
+              <p>Yes, <strong>100% free</strong> and <strong>no account needed</strong>: every feature
+                (alerts, 9 currencies, all impact levels, multiple lead times, result after release, position size
+                calculator) is included. No ads, no subscription, no tracking. The source code is open,
+                under the MIT license.</p>
+            </div>
+          </details>
+          <details class="glass">
+            <summary>Do I need to keep the browser open?</summary>
+            <div class="answer">
+              <p>Yes. Alerts are triggered by the extension, so Chrome (or Edge / Brave) has to be
+                <strong>open</strong>, even if it's minimized to the taskbar. If the browser is closed or the
+                computer is asleep, no alert can be shown.
+              </p>
+            </div>
+          </details>
+          <details class="glass">
+            <summary>I'm not getting notifications on Windows. What should I do?</summary>
+            <div class="answer">
+              <p>Open <em>Settings → System → Notifications</em>, make sure notifications are turned on for
+                <strong>Google Chrome</strong> (or Edge / Brave) and that <em>Do not disturb</em> / <em>Focus
+                  assist</em> is turned off.
+              </p>
+              <p>On macOS: <em>System Settings → Notifications → Google Chrome → Allow notifications</em>. Either way,
+                the <strong>Fire a test alert</strong> button in Settings lets you check that everything
+                works. The pop-up window, for its part, shows up even if system notifications are blocked.</p>
+            </div>
+          </details>
+          <details class="glass">
+            <summary>Where does the data come from? In what time zone are releases shown?</summary>
+            <div class="answer">
+              <p>By default, the calendar comes from <strong>Investing.com</strong> (rolling 8 days, with the actual
+                figure after release). You can also pick <strong>Forex Factory</strong> in Settings:
+                a very reliable feed, but limited to the current week and without actual figures.</p>
+              <p>Investing.com sometimes rejects requests (anti-bot protection). The extension then <strong>switches
+                  automatically to Forex Factory</strong> (orange message in the popup) and retries Investing.com a
+                little later. To get it unblocked faster: open investing.com once in your browser, then click
+                ⟳ in the popup.</p>
+              <p>Times are converted to <strong>your computer's time zone</strong>: no math
+                needed, even when you travel.</p>
+            </div>
+          </details>
+          <details class="glass">
+            <summary>Why don't I see the result after a release?</summary>
+            <div class="answer">
+              <p>The result (actual figure vs forecast) is only available with the
+                <strong>Investing.com</strong> source. It arrives about one minute after the release; if the figure is late,
+                the extension retries every minute for a few minutes. Also make sure the "Result
+                after release" option is turned on in Settings.
+              </p>
+            </div>
+          </details>
+          <details class="glass">
+            <summary>How does the position size calculator work?</summary>
+            <div class="answer">
+              <p>Open the popup and go to the <strong>Position size calculator</strong> tab. Exchange rates (ECB) are
+                fetched automatically and can be entered manually under "Advanced". For indices and metals,
+                the value of a point depends on your broker: check it and adjust it under "Advanced". The result is
+                indicative.</p>
+            </div>
+          </details>
+          <details class="glass">
+            <summary>What happens to my data?</summary>
+            <div class="answer">
+              <p>It stays in your browser. The extension has no server and sends nothing to its publisher.
+                Details in the <a href="privacy.html">privacy policy</a>.</p>
+            </div>
+          </details>
+          <details class="glass">
+            <summary>I found a bug or have an idea. How can I let you know?</summary>
+            <div class="answer">
+              <p>Open an issue on <a href="https://github.com/Damien-Codes/EcoQuant/issues" target="_blank"
+                  rel="noopener">GitHub (Issues)</a> describing what's happening (browser, selected source, screenshot
+                if possible), or email <a href="mailto:pinodamien@gmail.com">pinodamien@gmail.com</a>. See also the
+                <a href="contact.html">Contact</a> page.</p>
+            </div>
+          </details>
+          <details class="glass">
+            <summary>Is this investment advice?</summary>
+            <div class="answer">
+              <p>No. EcoQuant is an information and organization tool. It does not recommend buying or
+                selling anything. Trading involves a high risk of losing capital. See the <a
+                  href="terms.html">terms of use</a>.</p>
+            </div>
+          </details>
+        </div>
+      </div>
+    </section>
+
+    <!-- share:start -->
+    <section class="section" id="share">
+      <div class="container">
+        <div class="share-card glass reveal">
+          <span class="eyebrow">Share</span>
+          <h2>Share EcoQuant</h2>
+          <p class="muted">Know a trader who always misses NFP? Send them the link: the extension is free and installs in two minutes.</p>
+          <div class="share-grid" role="group" aria-label="Share EcoQuant" data-share data-share-url="https://damien-codes.github.io/EcoQuant-Site/en/" data-share-title="EcoQuant" data-share-text="EcoQuant: a free Chrome extension that alerts you before every economic news release (NFP, CPI, ECB, FOMC…), with the actual figure on release and a position size calculator.">
+            <button class="share-btn share-native" type="button" data-share-native hidden><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><path d="m8.6 13.5 6.8 4M15.4 6.5l-6.8 4"/></svg>Share…</button>
+            <a class="share-btn share-whatsapp" href="https://wa.me/?text=EcoQuant%3A%20a%20free%20Chrome%20extension%20that%20alerts%20you%20before%20every%20economic%20news%20release%20%28NFP%2C%20CPI%2C%20ECB%2C%20FOMC%E2%80%A6%29%2C%20with%20the%20actual%20figure%20on%20release%20and%20a%20position%20size%20calculator.%20https%3A%2F%2Fdamien-codes.github.io%2FEcoQuant-Site%2Fen%2F" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" focusable="false"><path d="M17.47 14.38c-.3-.15-1.76-.87-2.03-.97-.27-.1-.47-.15-.67.15-.2.3-.77.97-.94 1.16-.17.2-.35.22-.64.08-.3-.15-1.26-.47-2.39-1.48-.88-.79-1.48-1.76-1.65-2.06-.17-.3-.02-.46.13-.6.13-.14.3-.35.45-.52.15-.18.2-.3.3-.5.1-.2.05-.37-.03-.52-.07-.15-.67-1.61-.91-2.21-.24-.58-.49-.5-.67-.51h-.57c-.2 0-.52.07-.79.37-.27.3-1.04 1.02-1.04 2.48 0 1.46 1.06 2.88 1.21 3.07.15.2 2.1 3.2 5.08 4.49.71.31 1.26.49 1.7.63.71.22 1.36.19 1.87.12.57-.09 1.76-.72 2-1.41.25-.7.25-1.29.17-1.41-.07-.13-.27-.2-.57-.35zM12.05 21.79h-.01a9.87 9.87 0 0 1-5.03-1.38l-.36-.21-3.74.98 1-3.65-.24-.37a9.86 9.86 0 0 1-1.51-5.26c0-5.45 4.44-9.88 9.89-9.88 2.64 0 5.12 1.03 6.99 2.9a9.83 9.83 0 0 1 2.89 6.99c0 5.45-4.44 9.88-9.88 9.88zm8.41-18.3A11.82 11.82 0 0 0 12.05 0C5.5 0 .16 5.34.16 11.89c0 2.1.55 4.14 1.59 5.95L.06 24l6.3-1.65a11.88 11.88 0 0 0 5.69 1.45h.01c6.55 0 11.89-5.34 11.89-11.89 0-3.18-1.24-6.16-3.48-8.41z"/></svg>WhatsApp</a>
+            <a class="share-btn share-telegram" href="https://t.me/share/url?url=https%3A%2F%2Fdamien-codes.github.io%2FEcoQuant-Site%2Fen%2F&amp;text=EcoQuant%3A%20a%20free%20Chrome%20extension%20that%20alerts%20you%20before%20every%20economic%20news%20release%20%28NFP%2C%20CPI%2C%20ECB%2C%20FOMC%E2%80%A6%29%2C%20with%20the%20actual%20figure%20on%20release%20and%20a%20position%20size%20calculator." target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" focusable="false"><path d="M21.94 4.3 18.7 19.6c-.24 1.08-.88 1.35-1.78.84l-4.93-3.63-2.38 2.29c-.26.26-.48.48-.99.48l.35-5.02 9.14-8.26c.4-.35-.09-.55-.62-.2L6.2 13.2l-4.86-1.52c-1.06-.33-1.08-1.06.22-1.57L20.55 2.8c.88-.32 1.65.2 1.39 1.5z"/></svg>Telegram</a>
+            <a class="share-btn share-x" href="https://twitter.com/intent/tweet?text=EcoQuant%3A%20a%20free%20Chrome%20extension%20that%20alerts%20you%20before%20every%20economic%20news%20release%20%28NFP%2C%20CPI%2C%20ECB%2C%20FOMC%E2%80%A6%29%2C%20with%20the%20actual%20figure%20on%20release%20and%20a%20position%20size%20calculator.&amp;url=https%3A%2F%2Fdamien-codes.github.io%2FEcoQuant-Site%2Fen%2F" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" focusable="false"><path d="M18.24 2.25h3.31l-7.23 8.26 8.5 11.24H16.17l-5.21-6.82-5.97 6.82H1.68l7.73-8.84L1.25 2.25H8.08l4.71 6.23zm-1.16 17.52h1.83L7.08 4.13H5.12z"/></svg>X</a>
+            <a class="share-btn share-linkedin" href="https://www.linkedin.com/sharing/share-offsite/?url=https%3A%2F%2Fdamien-codes.github.io%2FEcoQuant-Site%2Fen%2F" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" focusable="false"><path d="M20.45 20.45h-3.55v-5.57c0-1.33-.03-3.04-1.85-3.04-1.85 0-2.14 1.45-2.14 2.94v5.67H9.35V9h3.41v1.56h.05c.48-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28zM5.34 7.43a2.06 2.06 0 1 1 0-4.12 2.06 2.06 0 0 1 0 4.12zM7.12 20.45H3.56V9h3.56v11.45z"/></svg>LinkedIn</a>
+            <a class="share-btn share-facebook" href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fdamien-codes.github.io%2FEcoQuant-Site%2Fen%2F" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" focusable="false"><path d="M24 12.07C24 5.4 18.63 0 12 0S0 5.4 0 12.07C0 18.1 4.39 23.09 10.13 24v-8.44H7.08v-3.49h3.05V9.41c0-3.02 1.79-4.69 4.53-4.69 1.31 0 2.69.23 2.69.23v2.97h-1.51c-1.49 0-1.96.93-1.96 1.89v2.26h3.33l-.53 3.49h-2.8V24C19.61 23.09 24 18.1 24 12.07z"/></svg>Facebook</a>
+            <a class="share-btn share-reddit" href="https://www.reddit.com/submit?url=https%3A%2F%2Fdamien-codes.github.io%2FEcoQuant-Site%2Fen%2F&amp;title=EcoQuant%3A%20alerts%20before%20every%20economic%20news%20release" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><circle cx="12" cy="13" r="8"/><path d="M8.5 14.5c1.9 1.6 5.1 1.6 7 0"/><circle cx="9" cy="11.5" r=".6" fill="currentColor"/><circle cx="15" cy="11.5" r=".6" fill="currentColor"/><path d="m12 5 1-3 4 1"/><circle cx="18" cy="3.5" r="1.2"/></svg>Reddit</a>
+            <a class="share-btn share-email" href="mailto:?subject=EcoQuant%3A%20alerts%20before%20every%20economic%20news%20release&amp;body=EcoQuant%3A%20a%20free%20Chrome%20extension%20that%20alerts%20you%20before%20every%20economic%20news%20release%20%28NFP%2C%20CPI%2C%20ECB%2C%20FOMC%E2%80%A6%29%2C%20with%20the%20actual%20figure%20on%20release%20and%20a%20position%20size%20calculator.%0A%0Ahttps%3A%2F%2Fdamien-codes.github.io%2FEcoQuant-Site%2Fen%2F"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg>Email</a>
+            <button class="share-btn share-copy" type="button" data-share-copy hidden><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg><span data-copy-label>Copy link</span></button>
+          </div>
+          <span class="visually-hidden" aria-live="polite" data-share-status></span>
+        </div>
+      </div>
+    </section>
+    <!-- share:end -->
+
+    <section class="section section-last">
+      <div class="container">
+        <div class="cta-band glass reveal">
+          <h2>Next release in a few hours. Will you be ready?</h2>
+          <p class="muted">Free, no account, installed in two minutes.</p>
+          <div class="cta-row">
+            <a class="btn btn-primary btn-lg" href="https://chromewebstore.google.com/detail/kmpbiiclcjeaockakakgmejokbcocnij" target="_blank" rel="noopener">Add to Chrome</a>
+            <a class="btn btn-lg" href="contact.html">Got a question?</a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-card glass">
+        <div class="footer-grid">
+          <div class="footer-about">
+            <a class="brand" href="index.html"><img src="../img/icon128.png" alt="" width="32" height="32"
+                loading="lazy">EcoQuant</a>
+            <p>The economic calendar and alerts before every release, right in your browser. 100%
+              free, no account.</p>
+          </div>
+          <nav aria-label="Product">
+            <h2>Useful links</h2>
+            <ul>
+              <li><a href="index.html#fonctionnalites">Features</a></li>
+              <li><a href="index.html#installer">Install</a></li>
+              <li><a href="index.html#faq">FAQ</a></li>
+              <li><a href="changelog.html">What's new</a></li>
+              <li><a href="https://github.com/Damien-Codes/EcoQuant" target="_blank" rel="noopener">GitHub</a></li>
+            </ul>
+          </nav>
+          <nav aria-label="Legal information">
+            <h2>Info</h2>
+            <ul>
+              <li><a href="terms.html">Terms of use</a></li>
+              <li><a href="privacy.html">Privacy</a></li>
+              <li><a href="legal-notice.html">Legal notice</a></li>
+              <li><a href="contact.html">Contact</a></li>
+            </ul>
+          </nav>
+        </div>
+        <div class="footer-bottom">
+          <p class="footer-legal-links">
+            <span>© 2026 <a href="https://github.com/damien-codes">Damien-Codes</a></span>
+          </p>
+          <p class="disclaimer">Code under the MIT license. Not affiliated with Investing.com or Forex Factory. For
+            information purposes only: not investment advice. Trading currencies, indices,
+            commodities and cryptocurrencies involves a high risk of losing capital. Chrome is a
+            trademark of Google LLC; this extension is not affiliated with or endorsed by Google.</p>
+        </div>
+      </div>
+    </div>
+  </footer>
+</body>
+
+</html>
